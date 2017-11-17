@@ -145,6 +145,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 
 		preProcessXml(root);
+		//解析xml配置文件里的配置，转换为beanDefinition,
+		// 并用BeanDefinitionReaderUtils注册到DefaultListableBeanFactory里
 		parseBeanDefinitions(root, this.delegate);
 		postProcessXml(root);
 

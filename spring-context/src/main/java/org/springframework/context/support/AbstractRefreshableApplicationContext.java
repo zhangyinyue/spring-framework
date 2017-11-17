@@ -122,14 +122,20 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
+		//是否存在bean工厂类，这个工厂类指的是DefaultListableBeanFactory
 		if (hasBeanFactory()) {
+			//销毁工厂类里面的bean
 			destroyBeans();
+			//工厂类设置为null
 			closeBeanFactory();
 		}
 		try {
+			//创建DefaultListableBeanFactory对象
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
+			//设置工厂类一些参数值
 			customizeBeanFactory(beanFactory);
+			//真正开始加载xml，转换为beandefinition的入口
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;

@@ -617,6 +617,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see #getBeanFactory()
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
+		//在AbstractRefreshableApplicationContext中去创建DefaultListableBeanFactory类
+		//这个DefaultListableBeanFactory可以当作是存放ioc容器的地方
 		refreshBeanFactory();
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 		if (logger.isDebugEnabled()) {
